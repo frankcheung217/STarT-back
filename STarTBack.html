@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STarT Back Screening Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .radio-group label {
+            font-weight: normal;
+            margin: 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+        }
+        .radio-group input[type="radio"] {
+            display: none;
+        }
+        .radio-group input[type="radio"]:checked + label {
+            background: #007BFF;
+            color: white;
+            border-color: #0056b3;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 5px;
+            display: none;
+        }
+        #results.show {
+            display: block;
+        }
+        @media (max-width: 600px) {
+            .radio-group {
+                flex-direction: column;
+            }
+            .radio-group label {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>STarT Back Screening Tool</h1>
+    <p>Answer these questions about your back pain over the last 2 weeks.</p>
+
+    <form id="startBackForm">
+        <!-- Physical Symptoms -->
+        <div class="section">
+            <h2>Physical Symptoms</h2>
+            <div class="question">
+                <label>1. Has your back pain spread down your leg(s)?</label>
+                <div class="radio-group">
+                    <input type="radio" id="q1_agree" name="q1" value="Agree" required>
+                    <label for="q1_agree">Agree</label>
+                    <input type="radio" id="q1_disagree" name="q1" value="Disagree">
+                    <label for="q1_disagree">Disagree</label>
+                </div>
+            </div>
+            <div class="question">
+                <label>2. Have you had pain in the shoulder or neck?</label>
+                <div class="radio-group">
+                    <input type="radio" id="q2_agree" name="q2" value="Agree" required>
+                    <label for="q2_agree">Agree</label>
+                    <input type="radio" id="q2_disagree" name="q2" value="Disagree">
+                    <label for="q2_disagree">Disagree</label>
+                </div>
+            </div>
+            <div class="question">
+                <label>3. Have you only walked shorter distances because of your back pain?</label>
+                <div class="radio-group">
+                    <input type="radio" id="q3_agree" name="q3" value="Agree" required>
+                    <label for="q3_agree">Agree</label>
+                    <input type="radio" id="q3_disagree" name="q3" value="Disagree">
+                    <label for="q3_disagree">Disagree</label>
+                </div>
+            </div>
+            <div class="question">
+                <label>4. Have you dressed more slowly than usual because of back pain?</label>
+                <div class="radio-group">
+                    <input type="radio" id="q4_agree" name="q4" value="Agree" required>
+                    <label for="q4_agree">Agree</label>
+                    <input type="radio" id="q4_disagree" name="q4" value="Disagree">
+                    <label for="q4_disagree">Disagree</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Psychosocial Factors -->
+        <div class="section">
+            <h2>Psychosocial Factors</h2>
+            <div class="question">
+                <label>5. Do you think it’s not safe to be physically active?</label>
+                <div class="radio-group">
+                    <input type="radio" id="q5_agree" name="q5" value="Agree" required>
+                    <label for="q5_agree">Agree</label>
+                    <input type="radio" id="q5_disagree" name="q5" value="Disagree">
+                    <label for="q5_disagree">Disagree</label>
+                </div>
+            </div>
+            <div class="question">
+                <label>6. Have worrying thoughts been going through your mind a lot?</label>
+                <div class="radio-group">
+                    <input type="radio" id="q6_agree" name="q6" value="Agree" required>
+                    <label for="q6_agree">Agree</label>
+                    <input type="radio" id="q6_disagree" name="q6" value="Disagree">
+                    <label for="q6_disagree">Disagree</label>
+                </div>
+            </div>
+            <div class="question">
+                <label>7. Do you feel that your back pain is terrible and never going to get better?</label>
+                <div class="radio-group">
+                    <input type="radio" id="q7_agree" name="q7" value="Agree" required>
+                    <label for="q7_agree">Agree</label>
+                    <input type="radio" id="q7_disagree" name="q7" value="Disagree">
+                    <label for="q7_disagree">Disagree</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- General Impact -->
+        <div class="section">
+            <h2>General Impact</h2>
+            <div class="question">
+                <label>8. In general, have you enjoyed things you usually do?</label>
+                <div class="radio-group">
+                    <input type="radio" id="q8_not" name="q8" value="Not at all" required>
+                    <label for="q8_not">Not at all</label>
+                    <input type="radio" id="q8_slightly" name="q8" value="Slightly">
+                    <label for="q8_slightly">Slightly</label>
+                    <input type="radio" id="q8_moderately" name="q8" value="Moderately">
+                    <label for="q8_moderately">Moderately</label>
+                    <input type="radio" id="q8_very" name="q8" value="Very much">
+                    <label for="q8_very">Very much</label>
+                    <input type="radio" id="q8_extremely" name="q8" value="Extremely">
+                    <label for="q8_extremely">Extremely</label>
+                </div>
+            </div>
+            <div class="question">
+                <label>9. Overall, how bothersome has your back pain been?</label>
+                <div class="radio-group">
+                    <input type="radio" id="q9_not" name="q9" value="Not at all" required>
+                    <label for="q9_not">Not at all</label>
+                    <input type="radio" id="q9_slightly" name="q9" value="Slightly">
+                    <label for="q9_slightly">Slightly</label>
+                    <input type="radio" id="q9_moderately" name="q9" value="Moderately">
+                    <label for="q9_moderately">Moderately</label>
+                    <input type="radio" id="q9_very" name="q9" value="Very much">
+                    <label for="q9_very">Very much</label>
+                    <input type="radio" id="q9_extremely" name="q9" value="Extremely">
+                    <label for="q9_extremely">Extremely</label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Calculate Results</button>
+    </form>
+
+    <div id="results">
+        <h2>Results</h2>
+        <pre id="resultText"></pre>
+    </div>
+
+    <script>
+        // Handle form submission
+        document.getElementById('startBackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Collect responses
+            const responses = {
+                q1: document.querySelector('input[name="q1"]:checked').value,
+                q2: document.querySelector('input[name="q2"]:checked').value,
+                q3: document.querySelector('input[name="q3"]:checked').value,
+                q4: document.querySelector('input[name="q4"]:checked').value,
+                q5: document.querySelector('input[name="q5"]:checked').value,
+                q6: document.querySelector('input[name="q6"]:checked').value,
+                q7: document.querySelector('input[name="q7"]:checked').value,
+                q8: document.querySelector('input[name="q8"]:checked').value,
+                q9: document.querySelector('input[name="q9"]:checked').value
+            };
+
+            // Calculate scores
+            const calculator = {
+                calculateTotalScore() {
+                    let score = 0;
+                    score += (responses.q1 === 'Agree') ? 1 : 0;
+                    score += (responses.q2 === 'Agree') ? 1 : 0;
+                    score += (responses.q3 === 'Agree') ? 1 : 0;
+                    score += (responses.q4 === 'Agree') ? 1 : 0;
+                    score += (responses.q5 === 'Agree') ? 1 : 0;
+                    score += (responses.q6 === 'Agree') ? 1 : 0;
+                    score += (responses.q7 === 'Agree') ? 1 : 0;
+                    score += (responses.q8 === 'Not at all' || responses.q8 === 'Slightly') ? 1 : 0;
+                    score += (responses.q9 === 'Very much' || responses.q9 === 'Extremely') ? 1 : 0;
+                    return score;
+                },
+                calculatePsychosocialSubscore() {
+                    let subscore = 0;
+                    subscore += (responses.q5 === 'Agree') ? 1 : 0;
+                    subscore += (responses.q6 === 'Agree') ? 1 : 0;
+                    subscore += (responses.q7 === 'Agree') ? 1 : 0;
+                    subscore += (responses.q8 === 'Not at all' || responses.q8 === 'Slightly') ? 1 : 0;
+                    subscore += (responses.q9 === 'Very much' || responses.q9 === 'Extremely') ? 1 : 0;
+                    return subscore;
+                },
+                calculateRiskCategory() {
+                    const totalScore = this.calculateTotalScore();
+                    const psychosocialSubscore = this.calculatePsychosocialSubscore();
+                    if (totalScore <= 3) {
+                        return 'Low Risk';
+                    } else if (psychosocialSubscore < 4) {
+                        return 'Medium Risk';
+                    } else {
+                        return 'High Risk';
+                    }
+                },
+                resultSummary() {
+                    const totalScore = this.calculateTotalScore();
+                    const psychosocialSubscore = this.calculatePsychosocialSubscore();
+                    const riskCategory = this.calculateRiskCategory();
+                    return `Total Score: ${totalScore}/9\nPsychosocial Subscore: ${psychosocialSubscore}/5\nRisk Category: ${riskCategory}`;
+                }
+            };
+
+            // Display results
+            const resultText = calculator.resultSummary();
+            document.getElementById('resultText').textContent = resultText;
+            document.getElementById('results').classList.add('show');
+        });
+    </script>
+</body>
+</html>
